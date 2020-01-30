@@ -19,7 +19,7 @@ def send_mail(recipient, name, message):
     # Create message container - the correct MIME type is multipart/alternative.
     msg = MIMENonMultipart("text", "html")
     msg['Subject'] = "Dualis update?!"
-    msg['From'] = mail_user
+    msg['From'] = f'Dualis Parser <{mail_user}>'
     msg['To'] = recipient
 
     # Create the body of the message (a plain-text and an HTML version).

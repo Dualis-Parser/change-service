@@ -1,3 +1,5 @@
+#!/home/drrago/anaconda3/bin/python3.7m
+
 import typing
 import requests
 
@@ -40,6 +42,7 @@ def check_task():
         # will be empty if nothing has changed... hopefully
         if (mail_message):
             mail_message = f'<ul>{mail_message}</ul>'
+            mail_message = mail_message.encode("ascii", "xmlcharrefreplace").decode("utf-8")
             print(mail_message)
             for recipient in mail_recipients:
                 # 0: username 1: email 2: name 3: course
