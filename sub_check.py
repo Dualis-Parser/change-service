@@ -31,6 +31,7 @@ def check_task():
 
         # validate response
         if (response.get("code") != 200):
+            print("Error response: " + str(response.get("code")) + "\n invalidating account")
             mysql.query("UPDATE course SET valid = FALSE WHERE ID = ?", (check_target[0],))  # make entry invalid
             continue
 
@@ -73,7 +74,8 @@ def make_request(data: typing.Dict[str, str]) -> requests.Response:
     :return: the GET-response
     """
     return requests.get(
-        f'https://api.drrago.de/dualis/user?username={data.get("username")}&password={data.get("password")}'
+        f'https://api.drrago.de/dualis/user/{data.get("username")}',
+        headers={"Private-Token": data.get("password")}
     )
 
 
